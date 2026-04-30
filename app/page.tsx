@@ -9,6 +9,9 @@ import { ScrollTimeline } from "@/components/ui/ScrollTimeline";
 import { NeonCircle } from "@/components/ui/NeonCircle";
 import { SkillsGraph } from "@/components/ui/SkillsGraph";
 import dynamic from "next/dynamic";
+import Link from "next/link";
+import { projects } from "@/lib/projects";
+import { insights } from "@/lib/insights";
 
 const ArchitecturalModel = dynamic(
   () => import("@/components/ui/ArchitecturalModel").then((m) => m.ArchitecturalModel),
@@ -176,7 +179,137 @@ export default function Home() {
         {/* Skills Section */}
         <SkillsGraph />
 
-        {/* Experience Section */}
+        {/* Projects Section */}
+        <section id="projects" className="w-full px-6 py-32 relative z-10 bg-black/20 backdrop-blur-sm border-y border-white/5">
+          <div className="max-w-6xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+              className="text-center mb-20"
+            >
+              <h2 className="text-3xl md:text-5xl font-light uppercase tracking-[0.3em] text-white mb-6">Projects</h2>
+              <div className="w-16 h-[1px] bg-white/20 mx-auto" />
+            </motion.div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {projects.map((project, i) => (
+                <motion.div
+                  key={project.slug}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-40px" }}
+                  transition={{ duration: 0.6, delay: i * 0.12 }}
+                >
+                  <Link href={`/projects/${project.slug}`} className="group block h-full">
+                    <div
+                      className="h-full rounded-3xl p-8 border border-white/5 bg-white/2 backdrop-blur-sm relative overflow-hidden transition-all duration-500 group-hover:-translate-y-1 group-hover:border-white/15"
+                    >
+                      {/* Accent glow on hover */}
+                      <div
+                        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl pointer-events-none"
+                        style={{ background: `radial-gradient(ellipse 80% 60% at 50% 0%, ${project.color}10, transparent 70%)` }}
+                      />
+
+                      <div className="relative z-10 flex flex-col h-full">
+                        <div className="flex items-start justify-between mb-6">
+                          <span
+                            className="text-[10px] tracking-[0.3em] uppercase font-medium"
+                            style={{ color: project.color, opacity: 0.8 }}
+                          >
+                            {project.category}
+                          </span>
+                          <span className="text-[10px] tracking-widest text-zinc-600">{project.year}</span>
+                        </div>
+
+                        <h3 className="text-xl md:text-2xl font-light text-white mb-3 tracking-wide group-hover:text-white transition-colors">
+                          {project.title}
+                        </h3>
+
+                        <p className="text-sm text-zinc-500 leading-relaxed font-light mb-8 flex-grow">
+                          {project.tagline}
+                        </p>
+
+                        <div className="flex flex-wrap gap-2 mb-8">
+                          {project.tech.slice(0, 3).map((t) => (
+                            <span key={t} className="px-2.5 py-1 text-[10px] rounded-full bg-white/4 border border-white/8 text-zinc-400 tracking-wide">
+                              {t}
+                            </span>
+                          ))}
+                          {project.tech.length > 3 && (
+                            <span className="px-2.5 py-1 text-[10px] rounded-full bg-white/4 border border-white/8 text-zinc-500">
+                              +{project.tech.length - 3}
+                            </span>
+                          )}
+                        </div>
+
+                        <div className="flex items-center gap-2 text-[10px] tracking-[0.2em] uppercase text-zinc-500 group-hover:text-white transition-colors duration-300">
+                          <span>View Case Study</span>
+                          <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Insights Section */}
+        <section id="insights" className="w-full px-6 py-32 relative z-10">
+          <div className="max-w-6xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+              className="text-center mb-20"
+            >
+              <h2 className="text-3xl md:text-5xl font-light uppercase tracking-[0.3em] text-white mb-6">Insights</h2>
+              <div className="w-16 h-[1px] bg-white/20 mx-auto" />
+            </motion.div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {insights.map((insight, i) => (
+                <motion.div
+                  key={insight.slug}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-40px" }}
+                  transition={{ duration: 0.6, delay: i * 0.15 }}
+                >
+                  <Link href={`/insights/${insight.slug}`} className="group block">
+                    <GlassCard className="h-full border-white/5 hover:border-white/20 transition-all duration-500">
+                      <div className="flex flex-col h-full">
+                        <div className="flex items-center gap-4 mb-6">
+                          <span className="text-[10px] tracking-[0.2em] uppercase text-zinc-500">{insight.date}</span>
+                          <span className="w-1 h-1 rounded-full bg-white/20" />
+                          <span className="text-[10px] tracking-[0.2em] uppercase text-zinc-500">{insight.readTime}</span>
+                        </div>
+                        
+                        <h3 className="text-2xl md:text-3xl font-light text-white mb-4 group-hover:text-white transition-colors leading-tight">
+                          {insight.title}
+                        </h3>
+                        
+                        <p className="text-sm text-zinc-500 leading-relaxed font-light mb-8 line-clamp-3">
+                          {insight.excerpt}
+                        </p>
+
+                        <div className="flex items-center gap-2 text-[10px] tracking-[0.2em] uppercase text-zinc-400 group-hover:text-white transition-colors mt-auto">
+                          <span>Read Article</span>
+                          <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
+                        </div>
+                      </div>
+                    </GlassCard>
+                  </Link>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         <section id="experience" className="w-full px-6 py-32 relative z-10 bg-black/20 backdrop-blur-sm border-y border-white/5 mt-12">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-24">

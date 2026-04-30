@@ -35,6 +35,13 @@ export function Footer() {
           </p>
         </div>
 
+        <div className="flex flex-wrap justify-center gap-x-8 gap-y-2">
+          <a href="/#about" className="text-xs tracking-[0.2em] uppercase text-zinc-500 hover:text-white transition-colors">About</a>
+          <a href="/#projects" className="text-xs tracking-[0.2em] uppercase text-zinc-500 hover:text-white transition-colors">Projects</a>
+          <a href="/#insights" className="text-xs tracking-[0.2em] uppercase text-zinc-500 hover:text-white transition-colors">Insights</a>
+          <a href="/#experience" className="text-xs tracking-[0.2em] uppercase text-zinc-500 hover:text-white transition-colors">Experience</a>
+        </div>
+
         <div className="flex gap-6">
           <a
             href="https://www.linkedin.com/in/sachidananda-pattanaik-9955762a5/"

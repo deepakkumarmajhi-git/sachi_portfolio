@@ -7,6 +7,13 @@ import { Footer } from "@/components/layout/Footer";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { ScrollTimeline } from "@/components/ui/ScrollTimeline";
 import { NeonCircle } from "@/components/ui/NeonCircle";
+import { SkillsGraph } from "@/components/ui/SkillsGraph";
+import dynamic from "next/dynamic";
+
+const ArchitecturalModel = dynamic(
+  () => import("@/components/ui/ArchitecturalModel").then((m) => m.ArchitecturalModel),
+  { ssr: false, loading: () => null }
+);
 
 export default function Home() {
   const experiences = [
@@ -77,7 +84,10 @@ export default function Home() {
           <NeonCircle color="cyan" size="w-[300px] h-[300px] md:w-[600px] md:h-[600px]" className="-top-16 -left-16 md:-top-32 md:-left-32 opacity-40 blur-[60px] md:blur-[100px]" />
           <NeonCircle color="purple" size="w-[400px] h-[400px] md:w-[800px] md:h-[800px]" className="-bottom-20 -right-10 md:-bottom-40 md:-right-20 opacity-30 blur-[80px] md:blur-[120px]" />
 
-          <div className="max-w-6xl mx-auto flex flex-col items-center text-center z-10 w-full">
+          {/* 3D Interactive WebGL Element */}
+          <ArchitecturalModel />
+
+          <div className="max-w-6xl mx-auto flex flex-col items-center text-center z-10 w-full relative pointer-events-none">
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -109,7 +119,7 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.8 }}
               href="#contact"
-              className="group relative px-10 sm:px-12 py-3 sm:py-4 border border-white/20 rounded-full overflow-hidden bg-transparent text-white font-medium uppercase tracking-[0.1em] sm:tracking-[0.2em] text-[10px] sm:text-xs transition-all duration-500 hover:border-white/50"
+              className="group relative px-10 sm:px-12 py-3 sm:py-4 border border-white/20 rounded-full overflow-hidden bg-transparent text-white font-medium uppercase tracking-[0.1em] sm:tracking-[0.2em] text-[10px] sm:text-xs transition-all duration-500 hover:border-white/50 pointer-events-auto cursor-pointer"
             >
               <div className="absolute inset-0 w-full h-full bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-500"></div>
               <span className="relative z-10 transition-colors duration-500">Explore Portfolio</span>
@@ -162,6 +172,9 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        {/* Skills Section */}
+        <SkillsGraph />
 
         {/* Experience Section */}
         <section id="experience" className="w-full px-6 py-32 relative z-10 bg-black/20 backdrop-blur-sm border-y border-white/5 mt-12">

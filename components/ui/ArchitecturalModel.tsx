@@ -4,6 +4,7 @@ import { useRef, useState, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Float } from "@react-three/drei";
 import * as THREE from "three";
+import { motion } from "framer-motion";
 
 function AbstractStructure({ isMobile }: { isMobile: boolean }) {
   const groupRef = useRef<THREE.Group>(null);
@@ -54,21 +55,27 @@ export function ArchitecturalModel() {
   }, []);
 
   return (
-    <div className={`absolute inset-0 w-full h-full z-0 opacity-75 mix-blend-screen ${isMobile ? 'pointer-events-none' : 'pointer-events-auto'}`}>
+    <motion.div
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={{ opacity: 0.75, scale: 1 }}
+      transition={{ duration: 1.5, ease: "easeOut", delay: 0.2 }}
+      className={`absolute inset-0 w-full h-full z-0 mix-blend-screen ${isMobile ? 'pointer-events-none' : 'pointer-events-auto'}`}
+    >
       <Canvas camera={{ position: [0, 0, 7], fov: 50 }}>
         <fog attach="fog" args={["#030303", 5, 16]} />
         <ambientLight intensity={0.6} />
         <AbstractStructure isMobile={isMobile} />
-        <OrbitControls
-          enableZoom={false}
-          enablePan={false}
-          enableRotate={!isMobile}
-          autoRotate
-          autoRotateSpeed={0.6}
-          maxPolarAngle={Math.PI / 1.5}
-          minPolarAngle={Math.PI / 3}
-        />
+        {!isMobile && (
+          <OrbitControls
+            enableZoom={false}
+            enablePan={false}
+            autoRotate
+            autoRotateSpeed={0.6}
+            maxPolarAngle={Math.PI / 1.5}
+            minPolarAngle={Math.PI / 3}
+          />
+        )}
       </Canvas>
-    </div>
+    </motion.div>
   );
 }

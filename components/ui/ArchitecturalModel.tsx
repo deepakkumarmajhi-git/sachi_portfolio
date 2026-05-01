@@ -5,7 +5,7 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Float } from "@react-three/drei";
 import * as THREE from "three";
 
-function AbstractStructure({ isMobile }: { isMobile: boolean }) {
+function AbstractStructure() {
   const groupRef = useRef<THREE.Group>(null);
 
   useFrame((_state, delta) => {
@@ -17,7 +17,7 @@ function AbstractStructure({ isMobile }: { isMobile: boolean }) {
 
   return (
     <Float speed={1.5} rotationIntensity={0.4} floatIntensity={0.8}>
-      <group ref={groupRef} scale={isMobile ? 0.65 : 1}>
+      <group ref={groupRef}>
         {/* Large outer wireframe */}
         <mesh>
           <icosahedronGeometry args={[2.5, 1]} />
@@ -53,12 +53,14 @@ export function ArchitecturalModel() {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
+  if (isMobile) return null;
+
   return (
     <div className="absolute inset-0 w-full h-full z-0 opacity-75 mix-blend-screen pointer-events-auto">
       <Canvas camera={{ position: [0, 0, 7], fov: 50 }}>
         <fog attach="fog" args={["#030303", 5, 16]} />
         <ambientLight intensity={0.6} />
-        <AbstractStructure isMobile={isMobile} />
+        <AbstractStructure />
         <OrbitControls
           enableZoom={false}
           enablePan={false}

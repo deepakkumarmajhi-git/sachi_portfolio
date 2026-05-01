@@ -1,4 +1,4 @@
-import { Mail } from "lucide-react";
+import { Mail, Phone, MessageCircle } from "lucide-react";
 
 const GithubIcon = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -22,17 +22,33 @@ const InstagramIcon = () => (
   </svg>
 );
 
+const WhatsappIcon = () => <MessageCircle size={16} className="inline-block mr-2" />;
+const CallIcon = () => <Phone size={16} className="inline-block mr-2" />;
+const MailIcon = () => <Mail size={16} className="inline-block mr-2" />;
+
 export function Footer() {
   return (
     <footer className="w-full py-12 relative overflow-hidden border-t border-white/10 bg-black/50 backdrop-blur-md">
       <div className="max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center justify-between gap-6 relative z-10">
         <div className="text-center md:text-left">
           <h3 className="text-xl font-bold tracking-widest text-white mb-2">
-            SACHIDANANDA PATTNAIK
+            SACHIDANANDA PATTANAIK
           </h3>
           <p className="text-sm text-foreground/50">
             Designing smarter and more efficient living spaces.
           </p>
+          <div className="flex flex-col gap-2 mt-4">
+            <a href="https://wa.me/+918260586277" target="_blank" rel="noopener noreferrer" className="text-sm text-foreground/50 hover:text-white transition-colors flex items-center">
+              <WhatsappIcon />+91 8260586277
+            </a>
+            <a href="tel:+918260586277" className="text-sm text-foreground/50 hover:text-white transition-colors flex items-center">
+              <CallIcon />+91 8260586277
+            </a>
+            <a href="mailto:pattnaiksachidananda0@gmail.com" className="text-sm text-foreground/50 hover:text-white transition-colors flex items-center">
+              <MailIcon />pattnaiksachidananda0@gmail.com
+            </a>
+          </div>
+
         </div>
 
         <div className="flex flex-wrap justify-center gap-x-8 gap-y-2">

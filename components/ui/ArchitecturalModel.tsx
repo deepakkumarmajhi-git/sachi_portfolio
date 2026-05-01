@@ -1,11 +1,11 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Float } from "@react-three/drei";
 import * as THREE from "three";
 
-function AbstractStructure() {
+function AbstractStructure({ isMobile }: { isMobile: boolean }) {
   const groupRef = useRef<THREE.Group>(null);
 
   useFrame((_state, delta) => {
@@ -17,7 +17,7 @@ function AbstractStructure() {
 
   return (
     <Float speed={1.5} rotationIntensity={0.4} floatIntensity={0.8}>
-      <group ref={groupRef}>
+      <group ref={groupRef} scale={isMobile ? 0.65 : 1}>
         {/* Large outer wireframe */}
         <mesh>
           <icosahedronGeometry args={[2.5, 1]} />
@@ -41,15 +41,28 @@ function AbstractStructure() {
 }
 
 export function ArchitecturalModel() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
   return (
-    <div className="absolute inset-0 w-full h-full z-0 opacity-75 mix-blend-screen pointer-events-auto">
+    <div className={`absolute inset-0 w-full h-full z-0 opacity-75 mix-blend-screen ${isMobile ? 'pointer-events-none' : 'pointer-events-auto'}`}>
       <Canvas camera={{ position: [0, 0, 7], fov: 50 }}>
         <fog attach="fog" args={["#030303", 5, 16]} />
         <ambientLight intensity={0.6} />
-        <AbstractStructure />
+        <AbstractStructure isMobile={isMobile} />
         <OrbitControls
           enableZoom={false}
           enablePan={false}
+          enableRotate={!isMobile}
           autoRotate
           autoRotateSpeed={0.6}
           maxPolarAngle={Math.PI / 1.5}

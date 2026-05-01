@@ -209,7 +209,7 @@ export default function Home() {
                       {/* Accent glow on hover */}
                       <div
                         className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl pointer-events-none"
-                        style={{ background: `radial-gradient(ellipse 80% 60% at 50% 0%, ${project.color}10, transparent 70%)` }}
+                        style={{ background: `radial-gradient(ellipse 80% 60% at 50% 0%, ${project.color}10, transparent 90%)` }}
                       />
 
                       <div className="relative z-10 flex flex-col h-full">
@@ -288,11 +288,11 @@ export default function Home() {
                           <span className="w-1 h-1 rounded-full bg-white/20" />
                           <span className="text-[10px] tracking-[0.2em] uppercase text-zinc-500">{insight.readTime}</span>
                         </div>
-                        
+
                         <h3 className="text-2xl md:text-3xl font-light text-white mb-4 group-hover:text-white transition-colors leading-tight">
                           {insight.title}
                         </h3>
-                        
+
                         <p className="text-sm text-zinc-500 leading-relaxed font-light mb-8 line-clamp-3">
                           {insight.excerpt}
                         </p>

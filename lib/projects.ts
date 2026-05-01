@@ -28,7 +28,7 @@ export const projects: Project[] = [
     outcome: "outcome of project 1",
     tech: ["tech1", "tech2", "tech3", "tech4", "tech5", "tech6"],
     links: [],
-    color: "#b4a0ff",
+    color: "#9237d4",
   },
   {
     slug: "project2",

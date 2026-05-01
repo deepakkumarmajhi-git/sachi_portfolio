@@ -35,7 +35,7 @@ export function Navbar() {
           }`}
       >
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
-          <a href="#" className="text-xl font-bold tracking-widest text-white z-50 relative">
+          <a href="#" className="text-xl font-bold tracking-widest text-white z-50 relative font-heading">
             S. PATTNAIK
           </a>
 
@@ -81,7 +81,7 @@ export function Navbar() {
                   key={link.name}
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="text-2xl font-bold text-white uppercase tracking-widest hover:text-[var(--color-neon-cyan)] transition-colors w-full text-center py-4 border-b border-white/5"
+                  className="text-2xl font-bold text-white uppercase tracking-widest hover:text-[var(--color-neon-cyan)] transition-colors w-full text-center py-4 border-b border-white/5 font-heading"
                 >
                   {link.name}
                 </motion.a>

@@ -12,6 +12,7 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import { projects } from "@/lib/projects";
 import { insights } from "@/lib/insights";
+import { SectionHeader } from "@/components/ui/SectionHeader";
 
 const ArchitecturalModel = dynamic(
   () => import("@/components/ui/ArchitecturalModel").then((m) => m.ArchitecturalModel),
@@ -95,11 +96,11 @@ export default function Home() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, ease: "easeOut" }}
-              className="text-4xl sm:text-6xl md:text-8xl lg:text-[9rem] font-light tracking-tight mb-4 uppercase text-white leading-none mix-blend-difference break-words w-full"
+              className="text-4xl sm:text-6xl md:text-8xl lg:text-[9rem] font-light tracking-tight mb-4 uppercase text-white leading-none mix-blend-difference break-words w-full font-heading"
             >
               Sachidananda
               <br />
-              <span className="font-black text-transparent bg-clip-text bg-gradient-to-r from-zinc-100 via-zinc-400 to-zinc-600">
+              <span className="font-black text-transparent bg-clip-text bg-gradient-to-r from-zinc-100 via-zinc-400 to-zinc-600 font-heading">
                 Pattnaik
               </span>
             </motion.h1>
@@ -134,7 +135,7 @@ export default function Home() {
         <section id="about" className="w-full max-w-6xl mx-auto px-6 py-32 relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <GlassCard delay={0.2} className="h-full border-white/10">
-              <h2 className="text-2xl font-light mb-8 text-white tracking-[0.3em] uppercase">About Me</h2>
+              <SectionHeader title="About Me" align="left" delay={0.1} />
               <p className="text-foreground/70 leading-relaxed mb-6 font-light">
                 Being an individual with a strong technical background with innovative and sustainable solution ideas for real-world problems, I work as an <strong className="text-white font-medium">architectural designer and construction planner</strong>, creating 2D & 3D residential designs, building layouts, and interior concepts.
               </p>
@@ -182,16 +183,10 @@ export default function Home() {
         {/* Projects Section */}
         <section id="projects" className="w-full px-6 py-32 relative z-10 bg-black/20 backdrop-blur-sm border-y border-white/5">
           <div className="max-w-6xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7 }}
-              className="text-center mb-20"
-            >
-              <h2 className="text-3xl md:text-5xl font-light uppercase tracking-[0.3em] text-white mb-6">Projects</h2>
-              <div className="w-16 h-[1px] bg-white/20 mx-auto" />
-            </motion.div>
+            <SectionHeader
+              title="Projects"
+              subtitle="A curation of architectural concepts and digital solutions"
+            />
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {projects.map((project, i) => (
@@ -260,16 +255,10 @@ export default function Home() {
         {/* Insights Section */}
         <section id="insights" className="w-full px-6 py-32 relative z-10">
           <div className="max-w-6xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7 }}
-              className="text-center mb-20"
-            >
-              <h2 className="text-3xl md:text-5xl font-light uppercase tracking-[0.3em] text-white mb-6">Insights</h2>
-              <div className="w-16 h-[1px] bg-white/20 mx-auto" />
-            </motion.div>
+            <SectionHeader
+              title="Insights"
+              subtitle="Thoughts on architecture, tech, and the future of smart cities"
+            />
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {insights.map((insight, i) => (
@@ -312,10 +301,7 @@ export default function Home() {
 
         <section id="experience" className="w-full px-6 py-32 relative z-10 bg-black/20 backdrop-blur-sm border-y border-white/5 mt-12">
           <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-24">
-              <h2 className="text-3xl md:text-5xl font-light uppercase tracking-[0.3em] text-white mb-6">Experience</h2>
-              <div className="w-16 h-[1px] bg-white/20 mx-auto" />
-            </div>
+            <SectionHeader title="Experience" />
             <ScrollTimeline items={experiences} />
           </div>
         </section>
@@ -323,10 +309,7 @@ export default function Home() {
         {/* Education Section */}
         <section id="education" className="w-full px-6 py-32 relative z-10 mt-12">
           <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-24">
-              <h2 className="text-3xl md:text-5xl font-light uppercase tracking-[0.3em] text-white mb-6">Education</h2>
-              <div className="w-16 h-[1px] bg-[var(--color-neon-pink)]/50 mx-auto" />
-            </div>
+            <SectionHeader title="Education" />
             <ScrollTimeline items={education} />
           </div>
         </section>
@@ -334,7 +317,7 @@ export default function Home() {
         {/* Contact Section */}
         <section id="contact" className="w-full max-w-4xl mx-auto px-6 py-32 relative z-10 mb-20">
           <GlassCard className="text-center p-12 md:p-24 border-white/10 hover:border-white/20">
-            <h2 className="text-3xl md:text-5xl font-light tracking-[0.2em] text-white mb-8 uppercase">Get In Touch</h2>
+            <SectionHeader title="Get In Touch" />
             <p className="text-foreground/50 max-w-xl mx-auto mb-12 text-sm leading-relaxed uppercase tracking-wider">
               I am always open to connecting with innovators, architects, researchers, entrepreneurs, and investors interested in technology, sustainability, and building impactful global solutions.
             </p>

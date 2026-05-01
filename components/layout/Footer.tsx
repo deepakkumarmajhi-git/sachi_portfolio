@@ -31,7 +31,7 @@ export function Footer() {
     <footer className="w-full py-12 relative overflow-hidden border-t border-white/10 bg-black/50 backdrop-blur-md">
       <div className="max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center justify-between gap-6 relative z-10">
         <div className="text-center md:text-left">
-          <h3 className="text-xl font-bold tracking-widest text-white mb-2">
+          <h3 className="text-xl font-bold tracking-widest text-white mb-2 font-heading">
             SACHIDANANDA PATTANAIK
           </h3>
           <p className="text-sm text-foreground/50">

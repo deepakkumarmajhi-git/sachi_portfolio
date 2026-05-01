@@ -68,7 +68,7 @@ export default function Home() {
     <>
       <Navbar />
 
-      <main className="relative w-full flex flex-col items-center overflow-x-hidden">
+      <main className="relative w-full flex flex-col items-center overflow-hidden">
         {/* Fixed Modern Background Image */}
         <div className="fixed inset-0 z-[-2] bg-black">
           <Image
@@ -83,7 +83,7 @@ export default function Home() {
         </div>
 
         {/* Hero Section */}
-        <section className="relative w-full min-h-screen flex flex-col items-center justify-center pt-24 px-4 sm:px-6 overflow-x-hidden">
+        <section className="relative w-full min-h-screen flex flex-col items-center justify-center pt-24 px-4 sm:px-6 overflow-hidden">
           <NeonCircle color="cyan" size="w-[300px] h-[300px] md:w-[600px] md:h-[600px]" className="-top-16 -left-16 md:-top-32 md:-left-32 opacity-40 blur-[60px] md:blur-[100px]" />
           <NeonCircle color="purple" size="w-[400px] h-[400px] md:w-[800px] md:h-[800px]" className="-bottom-20 -right-10 md:-bottom-40 md:-right-20 opacity-30 blur-[80px] md:blur-[120px]" />
 

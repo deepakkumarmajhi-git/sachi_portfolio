@@ -25,7 +25,7 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} dark antialiased`}
     >
-      <body className="min-h-screen flex flex-col bg-background text-foreground overflow-x-hidden md:cursor-none">
+      <body className="min-h-screen flex flex-col bg-background text-foreground overflow-x-hidden cursor-none md:cursor-none">
         <CustomCursor />
         <SmoothScroll>
           <PageTransition>

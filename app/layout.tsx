@@ -4,6 +4,7 @@ import "./globals.css";
 import { SmoothScroll } from "@/components/layout/SmoothScroll";
 import { CustomCursor } from "@/components/ui/CustomCursor";
 import { PageTransition } from "@/components/layout/PageTransition";
+import { ScrollToTop } from "@/components/ui/ScrollToTop";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -32,6 +33,7 @@ export default function RootLayout({
     >
       <body className="min-h-screen flex flex-col bg-background text-foreground overflow-x-hidden cursor-none md:cursor-none">
         <CustomCursor />
+        <ScrollToTop />
         <SmoothScroll>
           <PageTransition>
             {children}

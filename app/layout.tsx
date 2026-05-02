@@ -4,7 +4,6 @@ import "./globals.css";
 import { SmoothScroll } from "@/components/layout/SmoothScroll";
 import { CustomCursor } from "@/components/ui/CustomCursor";
 import { PageTransition } from "@/components/layout/PageTransition";
-import { BlueprintBackground } from "@/components/ui/BlueprintBackground";
 
 const outfit = Outfit({
   subsets: ["latin"],

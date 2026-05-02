@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Mail, Phone, MessageCircle } from "lucide-react";
 
 const GithubIcon = () => (
@@ -52,10 +53,10 @@ export function Footer() {
         </div>
 
         <div className="flex flex-wrap justify-center gap-x-8 gap-y-2">
-          <a href="/#about" className="text-xs tracking-[0.2em] uppercase text-zinc-500 hover:text-white transition-colors">About</a>
-          <a href="/#projects" className="text-xs tracking-[0.2em] uppercase text-zinc-500 hover:text-white transition-colors">Projects</a>
-          <a href="/#insights" className="text-xs tracking-[0.2em] uppercase text-zinc-500 hover:text-white transition-colors">Insights</a>
-          <a href="/#experience" className="text-xs tracking-[0.2em] uppercase text-zinc-500 hover:text-white transition-colors">Experience</a>
+          <Link href="/#about" className="text-xs tracking-[0.2em] uppercase text-zinc-500 hover:text-white transition-colors">About</Link>
+          <Link href="/#projects" className="text-xs tracking-[0.2em] uppercase text-zinc-500 hover:text-white transition-colors">Projects</Link>
+          <Link href="/#insights" className="text-xs tracking-[0.2em] uppercase text-zinc-500 hover:text-white transition-colors">Insights</Link>
+          <Link href="/#experience" className="text-xs tracking-[0.2em] uppercase text-zinc-500 hover:text-white transition-colors">Experience</Link>
         </div>
 
         <div className="flex gap-6">

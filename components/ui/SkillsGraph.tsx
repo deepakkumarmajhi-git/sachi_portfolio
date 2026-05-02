@@ -1,6 +1,5 @@
 "use client";
 
-import { useRef } from "react";
 import { motion } from "framer-motion";
 import {
   Code2,
@@ -79,6 +78,11 @@ function SkillBubble({ skill }: { skill: Skill }) {
   const iconSize = iconSizeMap[skill.size ?? "md"];
   const Icon = skill.icon;
 
+  // Deterministic values for animation based on skill name to satisfy purity rules
+  const seed = skill.name.split("").reduce((acc, char) => acc + char.charCodeAt(0), 0);
+  const stableDuration = 4 + (seed % 20) / 10;
+  const stableDelay = (seed % 10) / 5;
+
   return (
     <motion.div
       drag
@@ -97,9 +101,9 @@ function SkillBubble({ skill }: { skill: Skill }) {
           scale: { duration: 0.4 },
           y: {
             repeat: Infinity,
-            duration: 4 + Math.random() * 2,
+            duration: stableDuration,
             ease: "easeInOut",
-            delay: Math.random() * 2,
+            delay: stableDelay,
           },
         },
       }}

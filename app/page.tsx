@@ -13,6 +13,7 @@ import Link from "next/link";
 import { projects } from "@/lib/projects";
 import { insights } from "@/lib/insights";
 import { SectionHeader } from "@/components/ui/SectionHeader";
+import { Magnetic } from "@/components/ui/Magnetic";
 
 const ArchitecturalModel = dynamic(
   () => import("@/components/ui/ArchitecturalModel").then((m) => m.ArchitecturalModel),
@@ -101,7 +102,7 @@ export default function Home() {
               Sachidananda
               <br />
               <span className="font-black text-transparent bg-clip-text bg-gradient-to-r from-zinc-100 via-zinc-400 to-zinc-600 font-heading">
-                Pattnaik
+                Pattanaik
               </span>
             </motion.h1>
 
@@ -118,16 +119,18 @@ export default function Home() {
               <span>AI Enthusiast</span>
             </motion.div>
 
-            <motion.a
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
-              href="#contact"
-              className="group relative px-10 sm:px-12 py-3 sm:py-4 border border-white/20 rounded-full overflow-hidden bg-transparent text-white font-medium uppercase tracking-[0.1em] sm:tracking-[0.2em] text-[10px] sm:text-xs transition-all duration-500 hover:border-white/50 pointer-events-auto cursor-pointer"
-            >
-              <div className="absolute inset-0 w-full h-full bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-500"></div>
-              <span className="relative z-10 transition-colors duration-500">Explore Portfolio</span>
-            </motion.a>
+            <Magnetic>
+              <motion.a
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.8 }}
+                href="#contact"
+                className="group relative px-10 sm:px-12 py-3 sm:py-4 border border-white/20 rounded-full overflow-hidden bg-transparent text-white font-medium uppercase tracking-[0.1em] sm:tracking-[0.2em] text-[10px] sm:text-xs transition-all duration-500 hover:border-white/50 pointer-events-auto cursor-pointer"
+              >
+                <div className="absolute inset-0 w-full h-full bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-500"></div>
+                <span className="relative z-10 transition-colors duration-500">Explore Portfolio</span>
+              </motion.a>
+            </Magnetic>
           </div>
         </section>
 
@@ -322,20 +325,24 @@ export default function Home() {
               I am always open to connecting with innovators, architects, researchers, entrepreneurs, and investors interested in technology, sustainability, and building impactful global solutions.
             </p>
             <div className="flex flex-col md:flex-row items-center justify-center gap-6">
-              <a
-                href="mailto:pattnaiksachidananda0@gmail.com"
-                className="w-full md:w-auto px-12 py-4 rounded-full bg-white text-black font-medium uppercase tracking-[0.2em] text-xs hover:bg-zinc-200 transition-colors duration-300"
-              >
-                Say Hello
-              </a>
-              <a
-                href="https://wa.me/918260586277"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full md:w-auto px-12 py-4 rounded-full border border-white/20 text-white font-medium uppercase tracking-[0.2em] text-xs hover:bg-white/5 transition-colors duration-300"
-              >
-                WhatsApp Me
-              </a>
+              <Magnetic>
+                <a
+                  href="mailto:pattnaiksachidananda0@gmail.com"
+                  className="w-full md:w-auto px-12 py-4 rounded-full bg-white text-black font-medium uppercase tracking-[0.2em] text-xs hover:bg-zinc-200 transition-colors duration-300"
+                >
+                  Say Hello
+                </a>
+              </Magnetic>
+              <Magnetic>
+                <a
+                  href="https://wa.me/918260586277"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full md:w-auto px-12 py-4 rounded-full border border-white/20 text-white font-medium uppercase tracking-[0.2em] text-xs hover:bg-white/5 transition-colors duration-300"
+                >
+                  WhatsApp Me
+                </a>
+              </Magnetic>
             </div>
           </GlassCard>
         </section>

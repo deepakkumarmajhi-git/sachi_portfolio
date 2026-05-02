@@ -1,93 +1,129 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useMotionValue, useSpring } from "framer-motion";
+import { motion } from "framer-motion";
+import {
+  Code2,
+  Terminal,
+  Database,
+  Wind,
+  Cpu,
+  DraftingCompass,
+  Building2,
+  Box,
+  Home,
+  Square,
+  Cloud,
+  Brain,
+  Bot,
+  GitBranch,
+  Palette,
+  Binary,
+  Layers,
+  Globe,
+  Server,
+  LucideIcon
+} from "lucide-react";
 
 interface Skill {
   name: string;
   category: "code" | "design" | "ai" | "tools";
   size?: "sm" | "md" | "lg";
+  icon: LucideIcon;
 }
 
 const skills: Skill[] = [
-  { name: "Next.js", category: "code", size: "lg" },
-  { name: "React", category: "code", size: "lg" },
-  { name: "Node.js", category: "code", size: "md" },
-  { name: "TypeScript", category: "code", size: "md" },
-  { name: "MongoDB", category: "code", size: "sm" },
-  { name: "Tailwind CSS", category: "code", size: "md" },
-  { name: "Express.js", category: "code", size: "sm" },
-  { name: "AutoCAD", category: "design", size: "lg" },
-  { name: "Revit", category: "design", size: "md" },
-  { name: "3D Planning", category: "design", size: "md" },
-  { name: "Interior Design", category: "design", size: "lg" },
-  { name: "2D Drafting", category: "design", size: "sm" },
-  { name: "Azure AI", category: "ai", size: "lg" },
-  { name: "Machine Learning", category: "ai", size: "md" },
-  { name: "AI Foundry", category: "ai", size: "sm" },
-  { name: "Git", category: "tools", size: "sm" },
-  { name: "Figma", category: "tools", size: "sm" },
-  { name: "C Programming", category: "tools", size: "sm" },
-  { name: "DSA", category: "tools", size: "sm" },
+  { name: "Next.js", category: "code", size: "lg", icon: Globe },
+  { name: "React", category: "code", size: "lg", icon: Layers },
+  { name: "Node.js", category: "code", size: "md", icon: Server },
+  { name: "TypeScript", category: "code", size: "md", icon: Code2 },
+  { name: "MongoDB", category: "code", size: "sm", icon: Database },
+  { name: "Tailwind CSS", category: "code", size: "md", icon: Wind },
+  { name: "Express.js", category: "code", size: "sm", icon: Cpu },
+  { name: "AutoCAD", category: "design", size: "lg", icon: DraftingCompass },
+  { name: "Revit", category: "design", size: "md", icon: Building2 },
+  { name: "3D Planning", category: "design", size: "md", icon: Box },
+  { name: "Interior Design", category: "design", size: "lg", icon: Home },
+  { name: "2D Drafting", category: "design", size: "sm", icon: Square },
+  { name: "Azure AI", category: "ai", size: "lg", icon: Cloud },
+  { name: "Machine Learning", category: "ai", size: "md", icon: Brain },
+  { name: "AI Foundry", category: "ai", size: "sm", icon: Bot },
+  { name: "Git", category: "tools", size: "sm", icon: GitBranch },
+  { name: "Figma", category: "tools", size: "sm", icon: Palette },
+  { name: "C Programming", category: "tools", size: "sm", icon: Terminal },
+  { name: "DSA", category: "tools", size: "sm", icon: Binary },
 ];
 
 const categoryColors: Record<Skill["category"], { border: string; glow: string; text: string; bg: string }> = {
-  code:   { border: "rgba(255,255,255,0.2)", glow: "rgba(255,255,255,0.15)", text: "#ffffff", bg: "rgba(255,255,255,0.04)" },
-  design: { border: "rgba(212,175,55,0.4)",  glow: "rgba(212,175,55,0.2)",  text: "#d4af37", bg: "rgba(212,175,55,0.05)" },
-  ai:     { border: "rgba(180,160,255,0.4)", glow: "rgba(180,160,255,0.2)", text: "#b4a0ff", bg: "rgba(180,160,255,0.05)" },
-  tools:  { border: "rgba(100,220,200,0.3)", glow: "rgba(100,220,200,0.15)",text: "#64dcc8", bg: "rgba(100,220,200,0.04)" },
+  code: { border: "rgba(255,255,255,0.2)", glow: "rgba(255,255,255,0.15)", text: "#ffffff", bg: "rgba(255,255,255,0.04)" },
+  design: { border: "rgba(212,175,55,0.4)", glow: "rgba(212,175,55,0.2)", text: "#d4af37", bg: "rgba(212,175,55,0.05)" },
+  ai: { border: "rgba(180,160,255,0.4)", glow: "rgba(180,160,255,0.2)", text: "#b4a0ff", bg: "rgba(180,160,255,0.05)" },
+  tools: { border: "rgba(100,220,200,0.3)", glow: "rgba(100,220,200,0.15)", text: "#64dcc8", bg: "rgba(100,220,200,0.04)" },
 };
 
-const sizeMap = { sm: "px-4 py-2 text-xs", md: "px-5 py-2.5 text-sm", lg: "px-6 py-3 text-base" };
+const sizeMap = {
+  sm: "px-3 py-1.5 text-[10px]",
+  md: "px-4 py-2 text-xs",
+  lg: "px-5 py-2.5 text-sm"
+};
+
+const iconSizeMap = {
+  sm: 12,
+  md: 14,
+  lg: 16
+};
 
 function SkillBubble({ skill }: { skill: Skill }) {
-  const constraintRef = useRef(null);
   const colors = categoryColors[skill.category];
   const sizeClass = sizeMap[skill.size ?? "md"];
+  const iconSize = iconSizeMap[skill.size ?? "md"];
+  const Icon = skill.icon;
 
   return (
     <motion.div
       drag
       dragMomentum={true}
       dragElastic={0.3}
-      whileDrag={{ scale: 1.15, zIndex: 50 }}
-      whileHover={{ scale: 1.08 }}
-      whileTap={{ scale: 0.96 }}
-      initial={{ opacity: 0, scale: 0, rotate: Math.random() * 10 - 5 }}
+      whileDrag={{ scale: 1.1, zIndex: 50 }}
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+      initial={{ opacity: 0, scale: 0 }}
       animate={{
         opacity: 1,
         scale: 1,
-        y: [0, -6, 0],
+        y: [0, -4, 0],
         transition: {
-          opacity: { duration: 0.5 },
-          scale: { duration: 0.5 },
+          opacity: { duration: 0.4 },
+          scale: { duration: 0.4 },
           y: {
             repeat: Infinity,
-            duration: 3 + Math.random() * 2,
+            duration: 4 + Math.random() * 2,
             ease: "easeInOut",
             delay: Math.random() * 2,
           },
         },
       }}
-      className={`${sizeClass} rounded-full font-light select-none cursor-grab active:cursor-grabbing z-10 relative`}
+      className={`${sizeClass} rounded-full font-medium select-none cursor-grab active:cursor-grabbing z-10 relative flex items-center gap-2.5`}
       style={{
         border: `1px solid ${colors.border}`,
         color: colors.text,
         backgroundColor: colors.bg,
-        boxShadow: `0 0 20px ${colors.glow}, inset 0 1px 0 rgba(255,255,255,0.05)`,
-        backdropFilter: "blur(8px)",
-        letterSpacing: "0.05em",
+        boxShadow: `0 0 15px ${colors.glow}, inset 0 1px 0 rgba(255,255,255,0.05)`,
+        backdropFilter: "blur(12px)",
+        letterSpacing: "0.02em",
       }}
     >
-      {skill.name}
+      <Icon size={iconSize} className="opacity-80" />
+      <span>{skill.name}</span>
+
       {/* Hover glow pulse */}
       <motion.div
         className="absolute inset-0 rounded-full pointer-events-none"
         initial={{ opacity: 0 }}
         whileHover={{
-          opacity: [0, 0.4, 0],
-          scale: [1, 1.4, 1.8],
-          transition: { duration: 0.8 },
+          opacity: [0, 0.3, 0],
+          scale: [1, 1.2, 1.4],
+          transition: { duration: 1 },
         }}
         style={{ background: `radial-gradient(circle, ${colors.glow}, transparent 70%)` }}
       />

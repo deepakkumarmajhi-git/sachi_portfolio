@@ -318,17 +318,17 @@ export default function Home() {
         </section>
 
         {/* Contact Section */}
-        <section id="contact" className="w-full max-w-4xl mx-auto px-6 py-32 relative z-10 mb-20">
-          <GlassCard className="text-center p-12 md:p-24 border-white/10 hover:border-white/20">
+        <section id="contact" className="w-full max-w-4xl mx-auto px-4 sm:px-6 py-20 md:py-32 relative z-10 mb-10 md:mb-20">
+          <GlassCard className="text-center p-8 sm:p-12 md:p-24 border-white/10 hover:border-white/20">
             <SectionHeader title="Get In Touch" />
-            <p className="text-foreground/50 max-w-xl mx-auto mb-12 text-sm leading-relaxed uppercase tracking-wider">
+            <p className="text-foreground/50 max-w-xl mx-auto mb-10 md:mb-12 text-[10px] md:text-sm leading-relaxed uppercase tracking-wider">
               I am always open to connecting with innovators, architects, researchers, entrepreneurs, and investors interested in technology, sustainability, and building impactful global solutions.
             </p>
-            <div className="flex flex-col md:flex-row items-center justify-center gap-6">
+            <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-6">
               <Magnetic>
                 <a
                   href="mailto:pattnaiksachidananda0@gmail.com"
-                  className="w-full md:w-auto px-12 py-4 rounded-full bg-white text-black font-medium uppercase tracking-[0.2em] text-xs hover:bg-zinc-200 transition-colors duration-300"
+                  className="w-full md:w-auto px-10 md:px-12 py-4 rounded-full bg-white text-black font-medium uppercase tracking-[0.2em] text-[10px] md:text-xs hover:bg-zinc-200 transition-colors duration-300"
                 >
                   Say Hello
                 </a>
@@ -338,7 +338,7 @@ export default function Home() {
                   href="https://wa.me/918260586277"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full md:w-auto px-12 py-4 rounded-full border border-white/20 text-white font-medium uppercase tracking-[0.2em] text-xs hover:bg-white/5 transition-colors duration-300"
+                  className="w-full md:w-auto px-10 md:px-12 py-4 rounded-full border border-white/20 text-white font-medium uppercase tracking-[0.2em] text-[10px] md:text-xs hover:bg-white/5 transition-colors duration-300"
                 >
                   WhatsApp Me
                 </a>

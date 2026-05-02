@@ -37,7 +37,7 @@ export function GlassCard({ children, className, delay = 0 }: GlassCardProps) {
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       className={cn(
-        "glass-panel rounded-3xl p-8 sm:p-10 relative overflow-hidden group transition-all duration-500 hover:-translate-y-1 border border-white/5 hover:border-white/15",
+        "glass-panel rounded-3xl p-6 sm:p-10 relative overflow-hidden group transition-all duration-500 hover:-translate-y-1 border border-white/5 hover:border-white/15",
         className
       )}
     >

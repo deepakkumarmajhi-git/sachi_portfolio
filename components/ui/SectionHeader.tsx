@@ -26,7 +26,7 @@ export function SectionHeader({ title, subtitle, align = "center", delay = 0 }: 
   };
 
   return (
-    <div className={`flex flex-col mb-20 ${alignmentClasses[align]}`}>
+    <div className={`flex flex-col mb-12 md:mb-20 ${alignmentClasses[align]}`}>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}

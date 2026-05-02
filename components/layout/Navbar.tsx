@@ -1,7 +1,8 @@
 "use client";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import Link from "next/link";
+import { Menu, X, Rocket } from "lucide-react";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -35,22 +36,32 @@ export function Navbar() {
           }`}
       >
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
-          <a href="#" className="text-xl font-bold tracking-widest text-white z-50 relative font-heading">
+          <Link href="/" className="text-xl font-bold tracking-widest text-white z-50 relative font-heading">
             S. PATTNAIK
-          </a>
+          </Link>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className="text-sm text-foreground/70 hover:text-white hover:text-shadow-neon transition-all duration-300 relative group"
-              >
-                {link.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-gradient-to-r from-[var(--color-neon-cyan)] to-[var(--color-neon-purple)] group-hover:w-full transition-all duration-300" />
-              </a>
-            ))}
+            <div className="flex items-center gap-8 mr-4">
+              {navLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  className="text-sm text-foreground/70 hover:text-white hover:text-shadow-neon transition-all duration-300 relative group"
+                >
+                  {link.name}
+                  <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-gradient-to-r from-[var(--color-neon-cyan)] to-[var(--color-neon-purple)] group-hover:w-full transition-all duration-300" />
+                </a>
+              ))}
+            </div>
+
+            <Link
+              href="/services"
+              className="px-6 py-2.5 rounded-full bg-white/5 border border-white/10 text-white text-xs tracking-widest uppercase font-medium hover:bg-white/10 hover:border-white/20 transition-all duration-300 flex items-center gap-2 group"
+            >
+              <Rocket size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              Services
+            </Link>
           </div>
 
           {/* Mobile Menu Toggle */}
@@ -86,6 +97,21 @@ export function Navbar() {
                   {link.name}
                 </motion.a>
               ))}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: navLinks.length * 0.1 }}
+                className="w-full pt-8"
+              >
+                <Link
+                  href="/services"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="flex items-center justify-center gap-3 w-full py-5 rounded-2xl bg-white text-black font-bold uppercase tracking-[0.2em] text-sm"
+                >
+                  <Rocket size={18} />
+                  Our Services
+                </Link>
+              </motion.div>
             </div>
           </motion.div>
         )}

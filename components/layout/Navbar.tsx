@@ -37,7 +37,7 @@ export function Navbar() {
       >
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
           <Link href="/" className="text-xl font-bold tracking-widest text-white z-50 relative font-heading">
-            S. PATTNAIK
+            S. PATTANAIK
           </Link>
 
           {/* Desktop Menu */}

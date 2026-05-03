@@ -14,6 +14,7 @@ import { projects } from "@/lib/projects";
 import { insights } from "@/lib/insights";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Magnetic } from "@/components/ui/Magnetic";
+import { Typewriter } from "@/components/ui/Typewriter";
 
 const ArchitecturalModel = dynamic(
   () => import("@/components/ui/ArchitecturalModel").then((m) => m.ArchitecturalModel),
@@ -110,13 +111,14 @@ export default function Home() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1, delay: 0.5 }}
-              className="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-2 sm:gap-4 text-[10px] sm:text-xs md:text-sm text-zinc-400 font-medium tracking-[0.2em] sm:tracking-[0.3em] uppercase mt-8 mb-12 sm:mb-16"
+              className="text-[10px] sm:text-xs md:text-sm text-zinc-400 font-medium tracking-[0.2em] sm:tracking-[0.3em] uppercase mt-8 mb-12 sm:mb-16 min-h-[1.5em] flex justify-center items-center"
             >
-              <span>Architectural Designer</span>
-              <span className="hidden sm:block w-1 h-1 rounded-full bg-[var(--color-neon-pink)]"></span>
-              <span>Full-Stack Developer</span>
-              <span className="hidden sm:block w-1 h-1 rounded-full bg-white"></span>
-              <span>AI Enthusiast</span>
+              <Typewriter
+                words={["Architectural Designer", "AI Enthusiast", "Sustainable Innovator"]}
+                typingSpeed={80}
+                deletingSpeed={40}
+                delayBetweenWords={2500}
+              />
             </motion.div>
 
             <Magnetic>

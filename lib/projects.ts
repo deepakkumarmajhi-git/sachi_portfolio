@@ -14,6 +14,12 @@ export interface Project {
   color: string; // accent color for the case study page
   image: string; // main project image
   gallery?: string[]; // additional images
+  comparison?: {
+    before: string; // Blueprint/Plan
+    after: string; // Reality/Render
+    labelBefore?: string;
+    labelAfter?: string;
+  };
 }
 
 export const projects: Project[] = [
@@ -49,6 +55,12 @@ export const projects: Project[] = [
     color: "#ff007a",
     image: "/projects/house-2bhk-3d.jpg",
     gallery: ["/projects/house-2bhk-plan.jpg"],
+    comparison: {
+      before: "/projects/house-2bhk-plan.jpg",
+      after: "/projects/house-2bhk-3d.jpg",
+      labelBefore: "Blueprint",
+      labelAfter: "Reality"
+    }
   },
   {
     slug: "cafe-interior-design",
@@ -66,6 +78,12 @@ export const projects: Project[] = [
     color: "#ffaa00",
     image: "/projects/cafe-interior.jpg",
     gallery: ["/projects/cafe-plan.jpg"],
+    comparison: {
+      before: "/projects/cafe-plan.jpg",
+      after: "/projects/cafe-interior.jpg",
+      labelBefore: "2D Layout",
+      labelAfter: "3D Visualization"
+    }
   },
   {
     slug: "structural-g2-building",

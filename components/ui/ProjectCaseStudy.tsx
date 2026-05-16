@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import type { Project } from "@/lib/projects";
 import { useState, useEffect } from "react";
+import { ComparisonSlider } from "./ComparisonSlider";
 
 interface Props {
   project: Project;
@@ -159,6 +160,31 @@ export function ProjectCaseStudy({ project }: Props) {
                 </p>
               </motion.div>
             ))}
+
+            {/* Blueprint to Reality Comparison */}
+            {project.comparison && (
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                className="mt-8"
+              >
+                <h2
+                  className="text-[10px] tracking-[0.4em] uppercase font-medium mb-8"
+                  style={{ color: project.color, opacity: 0.8 }}
+                >
+                  Blueprint to Reality
+                </h2>
+                <ComparisonSlider 
+                  before={project.comparison.before}
+                  after={project.comparison.after}
+                  labelBefore={project.comparison.labelBefore}
+                  labelAfter={project.comparison.labelAfter}
+                  accentColor={project.color}
+                />
+              </motion.div>
+            )}
           </div>
 
           {/* Sidebar — 1 col */}

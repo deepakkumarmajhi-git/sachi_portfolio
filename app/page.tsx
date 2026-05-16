@@ -15,6 +15,7 @@ import { insights } from "@/lib/insights";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Magnetic } from "@/components/ui/Magnetic";
 import { Typewriter } from "@/components/ui/Typewriter";
+import { ArrowUpRight } from "lucide-react";
 
 const ArchitecturalModel = dynamic(
   () => import("@/components/ui/ArchitecturalModel").then((m) => m.ArchitecturalModel),
@@ -193,7 +194,7 @@ export default function Home() {
               subtitle="A curation of architectural concepts and digital solutions"
             />
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
               {projects.map((project, i) => (
                 <motion.div
                   key={project.slug}
@@ -204,49 +205,61 @@ export default function Home() {
                 >
                   <Link href={`/projects/${project.slug}`} className="group block h-full">
                     <div
-                      className="h-full rounded-3xl p-8 border border-white/5 bg-white/2 backdrop-blur-sm relative overflow-hidden transition-all duration-500 group-hover:-translate-y-1 group-hover:border-white/15"
+                      className="h-full rounded-[2.5rem] border border-white/5 bg-white/2 backdrop-blur-sm relative overflow-hidden transition-all duration-700 group-hover:-translate-y-2 group-hover:border-white/20 group-hover:shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
                     >
                       {/* Accent glow on hover */}
                       <div
                         className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl pointer-events-none"
-                        style={{ background: `radial-gradient(ellipse 80% 60% at 50% 0%, ${project.color}10, transparent 90%)` }}
+                        style={{ background: `radial-gradient(ellipse 80% 60% at 50% 0%, ${project.color}15, transparent 90%)` }}
                       />
 
-                      <div className="relative z-10 flex flex-col h-full">
-                        <div className="flex items-start justify-between mb-6">
-                          <span
-                            className="text-[10px] tracking-[0.3em] uppercase font-medium"
-                            style={{ color: project.color, opacity: 0.8 }}
-                          >
-                            {project.category}
-                          </span>
-                          <span className="text-[10px] tracking-widest text-zinc-600">{project.year}</span>
+                      <div className="flex flex-col h-full">
+                        {/* Image Container */}
+                        <div className="relative w-full aspect-[16/10] overflow-hidden rounded-t-[2.5rem]">
+                          <Image
+                            src={project.image}
+                            alt={project.title}
+                            fill
+                            className="object-cover transition-transform duration-1000 group-hover:scale-110"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-500" />
+                          
+                          {/* Floating Category Tag */}
+                          <div className="absolute top-6 left-6 px-4 py-1.5 rounded-full bg-black/40 backdrop-blur-md border border-white/10">
+                            <span className="text-[9px] tracking-[0.2em] uppercase font-medium text-white/90">
+                              {project.category}
+                            </span>
+                          </div>
                         </div>
 
-                        <h3 className="text-xl md:text-2xl font-light text-white mb-3 tracking-wide group-hover:text-white transition-colors">
-                          {project.title}
-                        </h3>
+                        {/* Content */}
+                        <div className="p-8 md:p-10 flex flex-col flex-grow relative z-10">
+                          <div className="flex items-center justify-between mb-4">
+                            <span className="text-[10px] tracking-widest text-zinc-500 uppercase">{project.year}</span>
+                            <span className="w-8 h-[1px] bg-white/10" />
+                          </div>
 
-                        <p className="text-sm text-zinc-500 leading-relaxed font-light mb-8 flex-grow">
-                          {project.tagline}
-                        </p>
+                          <h3 className="text-2xl md:text-3xl font-light text-white mb-4 tracking-tight group-hover:text-white transition-colors">
+                            {project.title}
+                          </h3>
 
-                        <div className="flex flex-wrap gap-2 mb-8">
-                          {project.tech.slice(0, 3).map((t) => (
-                            <span key={t} className="px-2.5 py-1 text-[10px] rounded-full bg-white/4 border border-white/8 text-zinc-400 tracking-wide">
-                              {t}
-                            </span>
-                          ))}
-                          {project.tech.length > 3 && (
-                            <span className="px-2.5 py-1 text-[10px] rounded-full bg-white/4 border border-white/8 text-zinc-500">
-                              +{project.tech.length - 3}
-                            </span>
-                          )}
-                        </div>
+                          <p className="text-sm text-zinc-400 leading-relaxed font-light mb-8 line-clamp-2">
+                            {project.tagline}
+                          </p>
 
-                        <div className="flex items-center gap-2 text-[10px] tracking-[0.2em] uppercase text-zinc-500 group-hover:text-white transition-colors duration-300">
-                          <span>View Case Study</span>
-                          <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
+                          <div className="flex flex-wrap gap-2 mb-10">
+                            {project.tech.slice(0, 4).map((t) => (
+                              <span key={t} className="px-3 py-1 text-[9px] rounded-full bg-white/5 border border-white/10 text-zinc-400 tracking-wider uppercase">
+                                {t}
+                              </span>
+                            ))}
+                          </div>
+
+                          <div className="mt-auto flex items-center gap-3 text-[10px] tracking-[0.3em] uppercase text-zinc-500 group-hover:text-white transition-all duration-300">
+                            <span className="w-0 group-hover:w-8 h-[1px] bg-white/30 transition-all duration-500" />
+                            <span>View Project</span>
+                            <ArrowUpRight size={14} className="opacity-0 group-hover:opacity-100 transition-opacity" />
+                          </div>
                         </div>
                       </div>
                     </div>

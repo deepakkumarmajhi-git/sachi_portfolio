@@ -48,7 +48,7 @@ export function ProjectCaseStudy({ project }: Props) {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-24"
+          className="mb-16"
         >
           <div className="flex flex-wrap items-center gap-3 mb-8">
             <span
@@ -71,15 +71,27 @@ export function ProjectCaseStudy({ project }: Props) {
           <p className="text-lg md:text-xl text-zinc-400 font-light max-w-2xl leading-relaxed">
             {project.tagline}
           </p>
+        </motion.div>
 
-          {/* Divider */}
-          <div className="mt-12 h-[1px] w-full" style={{ background: `linear-gradient(to right, ${accentRGB}40, transparent)` }} />
+        {/* Hero Image */}
+        <motion.div
+          initial={{ opacity: 0, scale: 1.05 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+          className="relative w-full aspect-[21/9] rounded-[2rem] overflow-hidden mb-24 border border-white/10"
+        >
+          <img
+            src={project.image}
+            alt={project.title}
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
         </motion.div>
 
         {/* Content Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-16 mb-32">
           {/* Main content — 2 cols */}
-          <div className="md:col-span-2 flex flex-col gap-12">
+          <div className="md:col-span-2 flex flex-col gap-16">
             {[
               { label: "Overview", content: project.overview },
               { label: "The Challenge", content: project.challenge },
@@ -89,16 +101,17 @@ export function ProjectCaseStudy({ project }: Props) {
               <motion.div
                 key={section.label}
                 initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.15 + i * 0.1, ease: "easeOut" }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, delay: i * 0.1, ease: "easeOut" }}
               >
                 <h2
-                  className="text-[10px] tracking-[0.4em] uppercase font-medium mb-4"
-                  style={{ color: accentRGB, opacity: 0.7 }}
+                  className="text-[10px] tracking-[0.4em] uppercase font-medium mb-6"
+                  style={{ color: project.color, opacity: 0.8 }}
                 >
                   {section.label}
                 </h2>
-                <p className="text-zinc-300 leading-relaxed font-light text-base">
+                <p className="text-zinc-300 leading-relaxed font-light text-lg md:text-xl">
                   {section.content}
                 </p>
               </motion.div>
@@ -108,23 +121,23 @@ export function ProjectCaseStudy({ project }: Props) {
           {/* Sidebar — 1 col */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
             className="flex flex-col gap-8"
           >
             {/* Tech stack */}
             <div
-              className="rounded-2xl p-6 border border-white/5"
-              style={{ background: "rgba(255,255,255,0.02)" }}
+              className="rounded-3xl p-8 border border-white/5 bg-white/2 backdrop-blur-sm"
             >
-              <h3 className="text-[10px] tracking-[0.3em] uppercase text-zinc-500 mb-4">
+              <h3 className="text-[10px] tracking-[0.3em] uppercase text-zinc-500 mb-6">
                 Tech Stack
               </h3>
               <div className="flex flex-wrap gap-2">
                 {project.tech.map((t) => (
                   <span
                     key={t}
-                    className="px-3 py-1.5 text-xs rounded-full border border-white/10 text-zinc-300 bg-white/3 font-light tracking-wide"
+                    className="px-4 py-2 text-xs rounded-full border border-white/10 text-zinc-300 bg-white/5 font-light tracking-wide uppercase"
                   >
                     {t}
                   </span>
@@ -135,13 +148,12 @@ export function ProjectCaseStudy({ project }: Props) {
             {/* Links */}
             {project.links.length > 0 && (
               <div
-                className="rounded-2xl p-6 border border-white/5"
-                style={{ background: "rgba(255,255,255,0.02)" }}
+                className="rounded-3xl p-8 border border-white/5 bg-white/2 backdrop-blur-sm"
               >
-                <h3 className="text-[10px] tracking-[0.3em] uppercase text-zinc-500 mb-4">
+                <h3 className="text-[10px] tracking-[0.3em] uppercase text-zinc-500 mb-6">
                   Links
                 </h3>
-                <div className="flex flex-col gap-3">
+                <div className="flex flex-col gap-4">
                   {project.links.map((link) => (
                     <a
                       key={link.label}
@@ -152,7 +164,7 @@ export function ProjectCaseStudy({ project }: Props) {
                     >
                       {link.label}
                       <ArrowUpRight
-                        size={14}
+                        size={16}
                         className="opacity-40 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all"
                       />
                     </a>
@@ -164,24 +176,51 @@ export function ProjectCaseStudy({ project }: Props) {
             {/* CTA */}
             <Link
               href="/#contact"
-              className="block w-full text-center px-6 py-4 rounded-full border border-white/15 text-white text-xs tracking-[0.2em] uppercase font-light hover:bg-white/5 transition-all duration-300"
+              className="group relative block w-full text-center px-8 py-5 rounded-full border border-white/15 text-white text-[10px] tracking-[0.3em] uppercase font-medium overflow-hidden transition-all duration-500 hover:border-white/40"
             >
-              Discuss This Project
+              <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-5 transition-opacity duration-500" />
+              Discuss Project
             </Link>
           </motion.div>
         </div>
 
+        {/* Gallery Section */}
+        {project.gallery && project.gallery.length > 0 && (
+          <div className="mb-32">
+            <h2 className="text-[10px] tracking-[0.4em] uppercase text-zinc-500 mb-12 text-center">Process & Planning</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {project.gallery.map((img, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, delay: i * 0.2 }}
+                  className="relative aspect-square md:aspect-video rounded-[2rem] overflow-hidden border border-white/10 group"
+                >
+                  <img
+                    src={img}
+                    alt={`Gallery ${i}`}
+                    className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500" />
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* Bottom Divider */}
-        <div className="h-[1px] w-full bg-white/5 mb-16" />
+        <div className="h-[1px] w-full bg-white/10 mb-16" />
 
         {/* Back link */}
         <div className="text-center">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-xs tracking-[0.2em] uppercase text-zinc-500 hover:text-white transition-colors group"
+            className="inline-flex items-center gap-3 text-[10px] tracking-[0.3em] uppercase text-zinc-500 hover:text-white transition-colors group"
           >
-            <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
-            Return to Portfolio
+            <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
+            Back to Portfolio
           </Link>
         </div>
       </main>

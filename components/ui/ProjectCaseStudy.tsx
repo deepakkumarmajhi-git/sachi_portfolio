@@ -1,9 +1,10 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import Link from "next/link";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import type { Project } from "@/lib/projects";
+import { useState, useEffect } from "react";
 
 interface Props {
   project: Project;
@@ -17,9 +18,37 @@ const statusColors: Record<Project["status"], string> = {
 
 export function ProjectCaseStudy({ project }: Props) {
   const accentRGB = project.color;
+  const [isComplete, setIsComplete] = useState(false);
+  const [progress, setProgress] = useState(0);
+
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
+
+  useEffect(() => {
+    return scrollYProgress.onChange((latest) => {
+      setProgress(Math.round(latest * 100));
+      if (latest > 0.98) setIsComplete(true);
+      else setIsComplete(false);
+    });
+  }, [scrollYProgress]);
 
   return (
     <div className="min-h-screen bg-black text-white overflow-x-hidden">
+      {/* Smart Progress Bar */}
+      <motion.div
+        className="fixed top-0 left-0 right-0 h-1 z-[100] origin-left"
+        style={{ 
+          scaleX, 
+          backgroundColor: accentRGB,
+          boxShadow: isComplete ? `0 0 20px ${accentRGB}` : 'none'
+        }}
+        animate={isComplete ? { height: [4, 6, 4] } : { height: 4 }}
+        transition={isComplete ? { repeat: Infinity, duration: 2 } : {}}
+      />
       {/* Noise + Background */}
       <div className="fixed inset-0 z-0 pointer-events-none">
         <div
@@ -33,13 +62,27 @@ export function ProjectCaseStudy({ project }: Props) {
 
       {/* Back Navigation */}
       <div className="fixed top-0 left-0 right-0 z-50 px-6 md:px-12 py-6 bg-black/60 backdrop-blur-md border-b border-white/5">
-        <Link
-          href="/#projects"
-          className="inline-flex items-center gap-2 text-xs tracking-[0.2em] uppercase text-zinc-400 hover:text-white transition-colors duration-300 group"
-        >
-          <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform duration-300" />
-          Back to Portfolio
-        </Link>
+        <div className="flex items-center justify-between">
+          <Link
+            href="/#projects"
+            className="inline-flex items-center gap-2 text-xs tracking-[0.2em] uppercase text-zinc-400 hover:text-white transition-colors duration-300 group"
+          >
+            <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform duration-300" />
+            Back to Portfolio
+          </Link>
+
+          <div className="flex items-center gap-4">
+            <span className="text-[10px] tracking-[0.2em] uppercase text-zinc-500 font-medium">
+              Reading Progress
+            </span>
+            <span 
+              className="text-xs font-mono w-10 text-right"
+              style={{ color: isComplete ? accentRGB : 'inherit' }}
+            >
+              {progress}%
+            </span>
+          </div>
+        </div>
       </div>
 
       <main className="relative z-10 pt-32 pb-32 max-w-5xl mx-auto px-6 md:px-12">

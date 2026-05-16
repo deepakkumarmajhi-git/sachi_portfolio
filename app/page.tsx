@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { GlassCard } from "@/components/ui/GlassCard";
-import { ScrollTimeline } from "@/components/ui/ScrollTimeline";
 import { NeonCircle } from "@/components/ui/NeonCircle";
 import { SkillsGraph } from "@/components/ui/SkillsGraph";
 import dynamic from "next/dynamic";
@@ -16,6 +15,7 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Magnetic } from "@/components/ui/Magnetic";
 import { Typewriter } from "@/components/ui/Typewriter";
 import { ArrowUpRight } from "lucide-react";
+import { ScrollTimeline } from "@/components/ui/ScrollTimeline";
 
 const ArchitecturalModel = dynamic(
   () => import("@/components/ui/ArchitecturalModel").then((m) => m.ArchitecturalModel),
@@ -220,23 +220,53 @@ export default function Home() {
                             src={project.image}
                             alt={project.title}
                             fill
-                            className="object-cover transition-transform duration-1000 group-hover:scale-110"
+                            className="object-cover transition-transform duration-1000 group-hover:scale-110 group-hover:blur-sm"
                           />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-500" />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
                           
                           {/* Floating Category Tag */}
-                          <div className="absolute top-6 left-6 px-4 py-1.5 rounded-full bg-black/40 backdrop-blur-md border border-white/10">
+                          <div className="absolute top-6 left-6 px-4 py-1.5 rounded-full bg-black/40 backdrop-blur-md border border-white/10 z-20">
                             <span className="text-[9px] tracking-[0.2em] uppercase font-medium text-white/90">
                               {project.category}
                             </span>
                           </div>
+
+                          {/* Quick Look Technical Overlay */}
+                          <motion.div 
+                            initial={{ opacity: 0, y: 20 }}
+                            whileHover={{ opacity: 1, y: 0 }}
+                            className="absolute inset-0 z-10 flex flex-col justify-center items-center p-8 bg-black/40 backdrop-blur-md opacity-0 group-hover:opacity-100 transition-all duration-500"
+                          >
+                            <div className="absolute top-0 right-0 p-10 opacity-10 pointer-events-none">
+                              <span className="text-7xl font-black uppercase tracking-tighter text-white">
+                                {project.category.split(' ')[0]}
+                              </span>
+                            </div>
+                            
+                            <div className="relative z-20 text-center">
+                              <span className="text-[10px] tracking-[0.5em] uppercase text-zinc-400 mb-4 block">Technical Breakdown</span>
+                              <div className="flex flex-wrap justify-center gap-2 mb-6">
+                                {project.tech.map((t) => (
+                                  <span key={t} className="px-3 py-1 text-[9px] rounded-full border border-white/20 text-white bg-white/5 font-light tracking-widest uppercase">
+                                    {t}
+                                  </span>
+                                ))}
+                              </div>
+                              <span className="inline-flex items-center gap-2 text-[10px] tracking-[0.3em] uppercase text-white font-medium">
+                                Explore Case Study <ArrowUpRight size={14} />
+                              </span>
+                            </div>
+                          </motion.div>
                         </div>
 
                         {/* Content */}
                         <div className="p-8 md:p-10 flex flex-col flex-grow relative z-10">
                           <div className="flex items-center justify-between mb-4">
                             <span className="text-[10px] tracking-widest text-zinc-500 uppercase">{project.year}</span>
-                            <span className="w-8 h-[1px] bg-white/10" />
+                            <div className="flex gap-1">
+                              <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: project.color }} />
+                              <div className="w-1.5 h-1.5 rounded-full bg-white/10" />
+                            </div>
                           </div>
 
                           <h3 className="text-2xl md:text-3xl font-light text-white mb-4 tracking-tight group-hover:text-white transition-colors">
@@ -247,18 +277,14 @@ export default function Home() {
                             {project.tagline}
                           </p>
 
-                          <div className="flex flex-wrap gap-2 mb-10">
-                            {project.tech.slice(0, 4).map((t) => (
-                              <span key={t} className="px-3 py-1 text-[9px] rounded-full bg-white/5 border border-white/10 text-zinc-400 tracking-wider uppercase">
-                                {t}
-                              </span>
-                            ))}
-                          </div>
-
-                          <div className="mt-auto flex items-center gap-3 text-[10px] tracking-[0.3em] uppercase text-zinc-500 group-hover:text-white transition-all duration-300">
-                            <span className="w-0 group-hover:w-8 h-[1px] bg-white/30 transition-all duration-500" />
-                            <span>View Project</span>
-                            <ArrowUpRight size={14} className="opacity-0 group-hover:opacity-100 transition-opacity" />
+                          <div className="mt-auto flex items-center justify-between">
+                            <div className="flex items-center gap-3 text-[10px] tracking-[0.3em] uppercase text-zinc-500 group-hover:text-white transition-all duration-300">
+                              <span className="w-0 group-hover:w-8 h-[1px] bg-white/30 transition-all duration-500" />
+                              <span>View Project</span>
+                            </div>
+                            <span className="text-[10px] text-zinc-600 font-mono tracking-tighter">
+                              {String(i + 1).padStart(2, '0')} / {String(projects.length).padStart(2, '0')}
+                            </span>
                           </div>
                         </div>
                       </div>

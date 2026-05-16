@@ -216,17 +216,12 @@ export default function Home() {
                       <div className="flex flex-col h-full">
                         {/* Image Container */}
                         <div className="relative w-full aspect-[16/10] overflow-hidden rounded-t-[2.5rem]">
-                          <motion.div
-                            layoutId={`project-image-${project.slug}`}
-                            className="absolute inset-0 z-0"
-                          >
-                            <Image
-                              src={project.image}
-                              alt={project.title}
-                              fill
-                              className="object-cover transition-transform duration-1000 group-hover:scale-110 group-hover:blur-sm"
-                            />
-                          </motion.div>
+                          <Image
+                            src={project.image}
+                            alt={project.title}
+                            fill
+                            className="object-cover transition-transform duration-1000 group-hover:scale-110 group-hover:blur-sm"
+                          />
                           <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
                           
                           {/* Floating Category Tag */}

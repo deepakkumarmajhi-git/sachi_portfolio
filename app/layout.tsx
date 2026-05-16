@@ -4,6 +4,7 @@ import "./globals.css";
 import { SmoothScroll } from "@/components/layout/SmoothScroll";
 import { CustomCursor } from "@/components/ui/CustomCursor";
 import { PageTransition } from "@/components/layout/PageTransition";
+import { RouteTransition } from "@/components/layout/RouteTransition";
 import { ScrollToTop } from "@/components/ui/ScrollToTop";
 
 const outfit = Outfit({
@@ -36,7 +37,9 @@ export default function RootLayout({
         <ScrollToTop />
         <SmoothScroll>
           <PageTransition>
-            {children}
+            <RouteTransition>
+              {children}
+            </RouteTransition>
           </PageTransition>
         </SmoothScroll>
       </body>

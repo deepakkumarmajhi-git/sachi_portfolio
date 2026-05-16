@@ -119,6 +119,7 @@ export function ProjectCaseStudy({ project }: Props) {
 
         {/* Hero Image */}
         <motion.div
+          layoutId={`project-image-${project.slug}`}
           initial={{ opacity: 0, scale: 1.05 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}

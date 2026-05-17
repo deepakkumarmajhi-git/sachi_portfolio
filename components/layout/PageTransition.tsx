@@ -59,6 +59,7 @@ export function PageTransition({ children }: { children: React.ReactNode }) {
                   alt="SP Logo"
                   width={120}
                   height={120}
+                  style={{ height: "auto" }}
                   className="object-contain drop-shadow-[0_0_40px_rgba(255,255,255,0.3)]"
                   priority
                 />

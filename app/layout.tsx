@@ -31,7 +31,7 @@ export default function RootLayout({
       lang="en"
       className={`${outfit.variable} ${spaceGrotesk.variable} dark antialiased`}
     >
-      <body className="min-h-screen flex flex-col bg-background text-foreground overflow-x-hidden cursor-none md:cursor-none">
+      <body className="relative min-h-screen flex flex-col bg-background text-foreground overflow-x-hidden cursor-none md:cursor-none">
         <CustomCursor />
         <ScrollToTop />
         <SmoothScroll>

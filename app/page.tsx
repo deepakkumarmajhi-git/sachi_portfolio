@@ -79,6 +79,7 @@ export default function Home() {
             src="/bg.png"
             alt="Modern Tech Background"
             fill
+            sizes="100vw"
             className="object-cover opacity-2 mix-blend-screen"
             priority
           />
@@ -220,10 +221,11 @@ export default function Home() {
                             src={project.image}
                             alt={project.title}
                             fill
+                            sizes="(max-width: 768px) 100vw, 50vw"
                             className="object-cover transition-transform duration-1000 group-hover:scale-110 group-hover:blur-sm"
                           />
                           <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
-                          
+
                           {/* Floating Category Tag */}
                           <div className="absolute top-6 left-6 px-4 py-1.5 rounded-full bg-black/40 backdrop-blur-md border border-white/10 z-20">
                             <span className="text-[9px] tracking-[0.2em] uppercase font-medium text-white/90">
@@ -232,7 +234,7 @@ export default function Home() {
                           </div>
 
                           {/* Quick Look Technical Overlay */}
-                          <motion.div 
+                          <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             whileHover={{ opacity: 1, y: 0 }}
                             className="absolute inset-0 z-10 flex flex-col justify-center items-center p-8 bg-black/40 backdrop-blur-md opacity-0 group-hover:opacity-100 transition-all duration-500"
@@ -242,7 +244,7 @@ export default function Home() {
                                 {project.category.split(' ')[0]}
                               </span>
                             </div>
-                            
+
                             <div className="relative z-20 text-center">
                               <span className="text-[10px] tracking-[0.5em] uppercase text-zinc-400 mb-4 block">Technical Breakdown</span>
                               <div className="flex flex-wrap justify-center gap-2 mb-6">

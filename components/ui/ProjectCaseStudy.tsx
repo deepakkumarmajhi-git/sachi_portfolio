@@ -42,8 +42,8 @@ export function ProjectCaseStudy({ project }: Props) {
       {/* Smart Progress Bar */}
       <motion.div
         className="fixed top-0 left-0 right-0 h-1 z-[100] origin-left"
-        style={{ 
-          scaleX, 
+        style={{
+          scaleX,
           backgroundColor: accentRGB,
           boxShadow: isComplete ? `0 0 20px ${accentRGB}` : 'none'
         }}
@@ -76,7 +76,7 @@ export function ProjectCaseStudy({ project }: Props) {
             <span className="text-[10px] tracking-[0.2em] uppercase text-zinc-500 font-medium">
               Reading Progress
             </span>
-            <span 
+            <span
               className="text-xs font-mono w-10 text-right"
               style={{ color: isComplete ? accentRGB : 'inherit' }}
             >
@@ -176,7 +176,7 @@ export function ProjectCaseStudy({ project }: Props) {
                 >
                   Blueprint to Reality
                 </h2>
-                <ComparisonSlider 
+                <ComparisonSlider
                   before={project.comparison.before}
                   after={project.comparison.after}
                   labelBefore={project.comparison.labelBefore}

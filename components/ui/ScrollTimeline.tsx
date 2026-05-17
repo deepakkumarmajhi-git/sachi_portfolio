@@ -26,7 +26,7 @@ export function ScrollTimeline({ items }: ScrollTimelineProps) {
   const lineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
-    <div ref={containerRef} className="relative w-full max-w-5xl mx-auto py-10 px-2 md:px-0">
+    <div ref={containerRef} style={{ position: "relative" }} className="relative w-full max-w-5xl mx-auto py-10 px-2 md:px-0">
       {/* Background timeline track */}
       <div className="absolute left-[28px] md:left-1/2 top-0 bottom-0 w-[2px] bg-white/10 -translate-x-1/2 rounded-full overflow-hidden">
         {/* Animated Neon Light Segment */}
